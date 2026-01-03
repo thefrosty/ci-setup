@@ -2,6 +2,14 @@ name: CI Setup
 description: "Sets up the environment for jobs during CI workflow"
 
 inputs:
+  composer-auth-json:
+    default: '{}'
+    description: 'shivammathur/setup-php env:COMPOSER_AUTH_JSON'
+    required: false
+  coverage:
+    default: 'xdebug'
+    description: 'shivammathur/setup-php coverage'
+    required: false
   extensions:
     default: 'curl, mysql, zip'
     description: 'shivammathur/setup-php extensions'
@@ -49,9 +57,11 @@ runs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ inputs.php-version }}
-        coverage: xdebug
+        coverage: ${{ inputs.coverage }}
         extensions: ${{ inputs.extensions }}
         tools: ${{ inputs.tools }}
+      env:
+        COMPOSER_AUTH_JSON: ${{ inputs.composer-auth-json }}
 
     - name: Composer config
       run: |
