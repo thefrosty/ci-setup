@@ -76,4 +76,4 @@ runs:
 
     - name: Get Changed Files
       id: files
-      uses: masesgroup/retrieve-changed-files@v3
+      uses: masesgroup/retrieve-changed-files@v4
